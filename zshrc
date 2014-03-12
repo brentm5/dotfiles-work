@@ -1,3 +1,6 @@
+# rbenv
+eval "$(rbenv init -)"
+
 # load our own completion functions
 fpath=(~/.zsh/completion $fpath)
 
