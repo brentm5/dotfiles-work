@@ -2,6 +2,8 @@
   default = current
 [color]
   ui = auto
+[format]
+  pretty = %Cred%h%Creset [%Cgreen%ar%Creset] %s %C(bold blue)<%an>%Creset
 [alias]
   aa = add --all
   ap = add --patch

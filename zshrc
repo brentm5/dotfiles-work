@@ -16,6 +16,7 @@ done
 setopt histignoredups
 SAVEHIST=4096
 HISTSIZE=4096
+HISTFILE=~/.zsh_history
 
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
@@ -47,6 +48,7 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 # use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
+export TERM="xterm-256color"
 
 # look for ey config in project dirs
 export EYRC=./.eyrc
@@ -56,3 +58,6 @@ export EYRC=./.eyrc
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# added by travis gem
+[ -f /Users/bmontague/.travis/travis.sh ] && source /Users/bmontague/.travis/travis.sh
