@@ -26,6 +26,7 @@ Bundle 'vim-scripts/ctags.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'PProvost/vim-ps1'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'elzr/vim-json'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local

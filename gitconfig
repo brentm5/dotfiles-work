@@ -19,8 +19,6 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-[merge]
-  ff = only
 [include]
   path = .gitconfig.local
 [commit]
