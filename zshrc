@@ -26,6 +26,7 @@ done
 # makes color constants available
 autoload -U colors
 colors
+export LSCOLORS=ehfxcxdxbxegedabagacad
 
 # enable colored output from ls, etc
 export CLICOLOR=1
