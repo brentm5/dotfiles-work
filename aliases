@@ -20,6 +20,7 @@ alias gcm="git commit -m"
 
 # Bundler
 alias b="bundle"
+alias be="bundle exec"
 
 # Tests and Specs
 alias t="ruby -I test"
