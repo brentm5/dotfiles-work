@@ -94,8 +94,8 @@ alias NextMonitor throw next
 
 
 #screens
-alias LeftMonitor 0
-alias RightMonitor 1
+alias BottomMonitor 1
+alias TopMonitor 0
 
 ### bindings / Shortcuts
 
@@ -116,24 +116,22 @@ bind h:ctrl;alt ${PrevMonitor}
 bind l:ctrl;alt ${NextMonitor}
 
 alias FocusIterm focus 'iTerm'
-alias FocusFlint focus 'Flint'
+alias FocusFlint focus 'Slack'
 
 # Always put the move direction before the monitor
 # Monitor must be a number, not an action(such as throw)
-layout dualmonitors 'iTerm' ${FullScreen} ${RightMonitor}
-layout dualmonitors 'Flint' ${Right} ${LeftMonitor}
-layout dualmonitors 'Adium' ${UpperRight} ${LeftMonitor}
-layout dualmonitors 'Airmail' ${FullScreen} ${LeftMonitor}
-layout dualmonitors 'Google Chrome' ${Center} ${RightMonitor}
+layout dualmonitors 'iTerm' ${FullScreen} ${TopMonitor}
+layout dualmonitors 'Slack' ${Right} ${BottomMonitor}
+layout dualmonitors 'Airmail' ${FullScreen} ${BottomMonitor}
+layout dualmonitors 'Google Chrome' ${FullScreen} ${TopMonitor}
 
 # Leave iTerm & Flint as the final focus
 layout dualmonitors AFTER ${FocusFlint}
 layout dualmonitors AFTER ${FocusIterm}
 
 #Single Monitor
-layout singlemonitor 'iTerm' ${FullScreen}
-layout singlemonitor 'Flint' ${Right}
-layout singlemonitor 'Adium' ${UpperLeft}
+layout singlemonitor 'iTerm' ${FullScreen} 
+layout singlemonitor 'Slack' ${Right}
 layout singlemonitor 'Airmail' ${FullScreen}
 layout singlemonitor 'Google Chrome' ${FullScreen}
 Leave iTerm on focus

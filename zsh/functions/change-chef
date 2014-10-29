@@ -1,0 +1,12 @@
+# With valid folder should change the chef repo symlink
+# Without valid folder error and return
+
+change-chef() {
+  NEW_CHEF_REPO="$HOME/.chef-$1"
+  if [[ -d $NEW_CHEF_REPO ]]; then
+    echo "Changing chef repo to point to '$NEW_CHEF_REPO'"
+    ln -fsn $NEW_CHEF_REPO ~/.chef
+  else
+    echo "Chef repo does not exist at '$NEW_CHEF_REPO'"
+  fi
+}
