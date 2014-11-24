@@ -1,6 +1,10 @@
 # rbenv
 eval "$(rbenv init -)"
 
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null)
@@ -85,3 +89,5 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # added by travis gem
 [ -f /Users/bmontague/.travis/travis.sh ] && source /Users/bmontague/.travis/travis.sh
+
+export PATH="$PATH:/usr/local/lib/node_modules"
