@@ -8,3 +8,4 @@ rerun.txt
 tags
 tmp/**/*
 !tmp/cache/.keep
+*.orig
