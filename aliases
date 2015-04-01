@@ -14,6 +14,9 @@ alias e="$EDITOR"
 alias v="$VISUAL"
 alias dotfiles="cd ~/.dotfiles"
 
+# Shitty mac fixes
+alias fix_dock="killall -Kill Dock"
+
 # git
 alias gs="git status"
 alias gcm="git commit -m"

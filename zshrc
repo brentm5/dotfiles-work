@@ -35,8 +35,12 @@ export LSCOLORS=ehfxcxdxbxegedabagacad
 # enable colored output from ls, etc
 export CLICOLOR=1
 
+# Setup Maven opts
+export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
+
 # history settings
 setopt hist_ignore_all_dups inc_append_history
+#share_history
 HISTFILE=~/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
