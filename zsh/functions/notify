@@ -1,6 +1,8 @@
 # Notify pushover when a command completes
 
 notify() {
+  COM="$@"
+
   $@
   rc=$?
 
@@ -9,7 +11,7 @@ notify() {
     return $rc
   fi
 
-  curl -G -X "POST" -v "https://api.pushover.net/1/messages.json" --data-urlencode "token=$PUSHOVER_API_KEY" --data-urlencode "user=$PUSHOVER_USER_KEY" --data-urlencode "message=Command Finished: $@" > /dev/null 2>&1
+  curl -G -X "POST" -v "https://api.pushover.net/1/messages.json" --data-urlencode "token=$PUSHOVER_API_KEY" --data-urlencode "user=$PUSHOVER_USER_KEY" --data-urlencode "message=Finished ($rc): $COM" > /dev/null 2>&1
 
   return $rc
 }
