@@ -1,0 +1,12 @@
+# will change the mvn profile
+# Without valid folder error and return
+
+change-mvn() {
+  NEW_MVN_SETTINGS="$HOME/.m2/settings/settings_$1.xml"
+  if [[ -f $NEW_MVN_SETTINGS ]]; then
+    echo "Changing mvn settings to point to '$NEW_MVN_SETTINGS'"
+    ln -fsn $NEW_MVN_SETTINGS ~/.m2/settings.xml
+  else
+    echo "MVN settings does not exist at '$NEW_MVN_SETTINGS'"
+  fi
+}

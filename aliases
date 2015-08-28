@@ -34,5 +34,20 @@ alias m="migrate"
 alias rk="rake"
 alias s="rspec"
 
+# Docker
+alias dm="docker-machine"
+alias ds="docker-swarm"
+alias dc="docker-compose" # This overrides an actual unix command but its stupid
+
+# Hogan
+alias hoganize="hogan --configDir ~/code/hogan-configs/configs --rootDir ."
+
+# Chef
+alias critic="foodcritic --epic-fail correctness --tags '~solo' --tags '~FC009' ."
+alias dv="delivery"
+
+# stash
+alias spr="stash pull-request"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
