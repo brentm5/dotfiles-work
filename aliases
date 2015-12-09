@@ -44,6 +44,9 @@ alias hoganize="hogan --configDir ~/code/hogan-configs/configs --rootDir ."
 
 # Chef
 alias critic="foodcritic --epic-fail correctness --tags '~solo' --tags '~FC009' ."
+alias k="kitchen"
+alias kc="kitchen converge"
+alias kv="kitchen verify"
 alias dv="delivery"
 
 # stash
