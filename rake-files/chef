@@ -1,0 +1,54 @@
+require 'rubocop/rake_task'
+require 'rspec/core/rake_task'
+require 'foodcritic'
+require 'kitchen'
+
+namespace :cookbook do
+  # Style tests. Rubocop and Foodcritic
+  namespace :style do
+    desc 'Run Ruby style checks'
+    RuboCop::RakeTask.new(:ruby)
+
+    desc 'Run Chef style checks'
+    FoodCritic::Rake::LintTask.new(:chef) do |t|
+      t.options = {
+        fail_tags: ['any']
+      }
+    end
+  end
+
+  desc 'Run all style checks'
+  task style: ['style:chef', 'style:ruby']
+
+  namespace :test do
+    desc 'Run ChefSpec examples'
+    RSpec::Core::RakeTask.new(:spec)
+
+    desc 'Run Test Kitchen'
+    task :integration do
+      Kitchen.logger = Kitchen.default_file_logger
+      Kitchen::Config.new.instances.each do |instance|
+        instance.verify
+      end
+    end
+
+    desc 'Cleanup tests in test Kitchen'
+    task :cleanup do
+      Kitchen.logger = Kitchen.default_file_logger
+      Kitchen::Config.new.instances.each do |instance|
+        instance.destroy
+      end
+    end
+  end
+
+  desc 'Run all tests'
+  task test: ['test:spec', 'test:integration']
+
+  desc 'Cleanup everything'
+  task cleanup: ['test:cleanup']
+end
+
+desc 'Run all style checks'
+task cookbook: ['cookbook:style', 'cookbook:test']
+
+task default: ['cookbook']

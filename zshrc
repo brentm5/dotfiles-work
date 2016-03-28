@@ -1,6 +1,9 @@
 # rbenv
 eval "$(rbenv init -)"
 
+# Thefuck
+eval "$(thefuck --alias)"
+
 # NVM
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
@@ -39,8 +42,7 @@ export CLICOLOR=1
 export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
 
 # history settings
-setopt hist_ignore_all_dups inc_append_history
-#share_history
+setopt hist_ignore_all_dups inc_append_history share_history
 HISTFILE=~/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
@@ -85,6 +87,9 @@ export PATH="$HOME/.chefdk/gem/ruby/2.1.0/bin:$PATH"
 
 # Setting up vagrant values
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+# Berks solve timeout adjustment
+export SOLVE_TIMEOUT=1000
 
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"

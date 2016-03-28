@@ -52,5 +52,8 @@ alias dv="delivery"
 # stash
 alias spr="stash pull-request"
 
+# Rakefile overrides
+alias crake="rake -f ~/.rake-files/chef"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
