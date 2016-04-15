@@ -3,7 +3,7 @@ require 'rspec/core/rake_task'
 require 'foodcritic'
 require 'kitchen'
 
-namespace :cookbook do
+namespace :cb do
   # Style tests. Rubocop and Foodcritic
   namespace :style do
     desc 'Run Ruby style checks'
@@ -49,6 +49,6 @@ namespace :cookbook do
 end
 
 desc 'Run all style checks'
-task cookbook: ['cookbook:style', 'cookbook:test']
+task cb: ['cb:style', 'cb:test']
 
-task default: ['cookbook']
+task default: ['cb']

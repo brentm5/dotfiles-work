@@ -55,5 +55,8 @@ alias spr="stash pull-request"
 # Rakefile overrides
 alias crake="rake -f ~/.rake-files/chef"
 
+# Spotify
+alias song="tmux-spotify-info"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
