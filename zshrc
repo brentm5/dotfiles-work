@@ -1,6 +1,3 @@
-# rbenv
-eval "$(rbenv init -)"
-
 # Thefuck
 eval "$(thefuck --alias)"
 
@@ -83,13 +80,12 @@ fi
 
 # load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/.chefdk/gem/ruby/2.1.0/bin:$PATH"
+
+# Configure RCUP
+export RCRC="$HOME/dotfiles/rcrc"
 
 # Setting up vagrant values
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
-
-# Berks solve timeout adjustment
-export SOLVE_TIMEOUT=1000
 
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
@@ -102,5 +98,3 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # added by travis gem
 [ -f /Users/bmontague/.travis/travis.sh ] && source /Users/bmontague/.travis/travis.sh
-
-export PATH="$PATH:/usr/local/lib/node_modules"

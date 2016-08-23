@@ -1,0 +1,12 @@
+# will change the mvn profile
+# Without valid folder error and return
+
+change-npm() {
+  NEW_NPM_SETTINGS="$HOME/.npmrc-$1"
+  if [[ -f $NEW_NPM_SETTINGS ]]; then
+    echo "Changing npm settings to point to '$NEW_NPM_SETTINGS'"
+    ln -fsn $NEW_NPM_SETTINGS ~/.npmrc
+  else
+    echo "NPM settings does not exist at '$NEW_NPM_SETTINGS'"
+  fi
+}

@@ -1,19 +1,43 @@
-require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
-require 'foodcritic'
-require 'kitchen'
 
 namespace :cb do
-  # Style tests. Rubocop and Foodcritic
+  # Berks Install
+  namespace :berks do
+    desc 'Install cookbook dependencies with Berkshelf'
+    task :install do
+      sh 'berks install'
+    end
+
+    desc 'Remove the berkfile lock file'
+    task :cleanup do
+      files = FileList["Berksfile.lock"]
+      files.each do |file|
+        File.delete(file) if File.exist?(file)
+      end
+    end
+
+    desc 'Publish cookbooks except testing cookbooks or local cookbooks'
+    task publish: ['install'] do
+      sh 'berks upload --except=test local'
+    end
+  end
+
+  desc 'Install dependencies with berks'
+  task berks: ['berks:install']
+
+  desc 'Publish cookbook with berks'
+  task publish: ['berks:publish']
+
+  # Style tests. cookstyle and Foodcritic
   namespace :style do
     desc 'Run Ruby style checks'
-    RuboCop::RakeTask.new(:ruby)
+    task :ruby do
+      sh 'cookstyle .'
+    end
 
     desc 'Run Chef style checks'
-    FoodCritic::Rake::LintTask.new(:chef) do |t|
-      t.options = {
-        fail_tags: ['any']
-      }
+    task :chef do
+      sh 'foodcritic . --epic-fail any'
     end
   end
 
@@ -24,31 +48,38 @@ namespace :cb do
     desc 'Run ChefSpec examples'
     RSpec::Core::RakeTask.new(:spec)
 
-    desc 'Run Test Kitchen'
-    task :integration do
-      Kitchen.logger = Kitchen.default_file_logger
-      Kitchen::Config.new.instances.each do |instance|
-        instance.verify
+    namespace :integration do
+      desc 'Run Test Kitchen Converge'
+      task :converge do
+        sh 'kitchen converge -c'
+      end
+
+      desc 'Run Test Kitchen verify'
+      task :verify do
+        sh 'kitchen verify'
+      end
+
+      desc 'Cleanup tests in test Kitchen'
+      task :cleanup do
+        sh 'kitchen destroy -c'
       end
     end
 
-    desc 'Cleanup tests in test Kitchen'
-    task :cleanup do
-      Kitchen.logger = Kitchen.default_file_logger
-      Kitchen::Config.new.instances.each do |instance|
-        instance.destroy
-      end
-    end
+    desc 'Run Test Kitchen'
+    task integration: ['integration:converge', 'integration:verify']
+
+    desc 'Cleanup tests'
+    task cleanup: ['integration:cleanup']
   end
 
   desc 'Run all tests'
   task test: ['test:spec', 'test:integration']
 
   desc 'Cleanup everything'
-  task cleanup: ['test:cleanup']
+  task cleanup: ['test:integration:cleanup', 'berks:cleanup']
 end
 
 desc 'Run all style checks'
-task cb: ['cb:style', 'cb:test']
+task cb: ['cb:berks', 'cb:style', 'cb:test']
 
 task default: ['cb']
