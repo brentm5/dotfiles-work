@@ -1,0 +1,8 @@
+# run a command for all dirs
+
+all-dirs() {
+  COM="$@"
+
+  for i in $(ls -d */); do cd $i; $@; cd ../; done
+  return $?
+}

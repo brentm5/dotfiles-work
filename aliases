@@ -13,6 +13,8 @@ alias -g ONE="| awk '{ print \$1}'"
 alias e="$EDITOR"
 alias v="$VISUAL"
 alias dotfiles="cd ~/.dotfiles"
+alias 🔥="kill -s KILL"
+alias 🌮="echo   TUESDAY!!'"
 
 # Shitty mac fixes
 alias fix_dock="killall -Kill Dock"
@@ -43,11 +45,12 @@ alias dc="docker-compose" # This overrides an actual unix command but its stupid
 alias hoganize="hogan --configDir ~/code/hogan-configs/configs --rootDir ."
 
 # Chef
-alias critic="foodcritic --epic-fail correctness --tags '~solo' --tags '~FC009' ."
+alias critic="foodcritic --epic-fail correctness ."
 alias k="kitchen"
 alias kc="kitchen converge"
 alias kv="kitchen verify"
 alias dv="delivery"
+alias ce="chef exec"
 
 # stash
 alias spr="stash pull-request"

@@ -98,3 +98,5 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # added by travis gem
 [ -f /Users/bmontague/.travis/travis.sh ] && source /Users/bmontague/.travis/travis.sh
+
+export PATH="$HOME/.yarn/bin:$PATH"

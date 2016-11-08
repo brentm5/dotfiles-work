@@ -1,11 +1,10 @@
 require 'rspec/core/rake_task'
 
-namespace :cb do
   # Berks Install
   namespace :berks do
     desc 'Install cookbook dependencies with Berkshelf'
     task :install do
-      sh 'berks install'
+      sh 'chef exec berks install'
     end
 
     desc 'Remove the berkfile lock file'
@@ -18,7 +17,7 @@ namespace :cb do
 
     desc 'Publish cookbooks except testing cookbooks or local cookbooks'
     task publish: ['install'] do
-      sh 'berks upload --except=test local'
+      sh 'chef exec berks upload --except=test local'
     end
   end
 
@@ -32,12 +31,12 @@ namespace :cb do
   namespace :style do
     desc 'Run Ruby style checks'
     task :ruby do
-      sh 'cookstyle .'
+      sh 'chef exec cookstyle .'
     end
 
     desc 'Run Chef style checks'
     task :chef do
-      sh 'foodcritic . --epic-fail any'
+      sh 'chef exec foodcritic . --epic-fail any'
     end
   end
 
@@ -51,17 +50,17 @@ namespace :cb do
     namespace :integration do
       desc 'Run Test Kitchen Converge'
       task :converge do
-        sh 'kitchen converge -c'
+        sh 'chef exec kitchen converge -c'
       end
 
       desc 'Run Test Kitchen verify'
       task :verify do
-        sh 'kitchen verify'
+        sh 'chef exec kitchen verify'
       end
 
       desc 'Cleanup tests in test Kitchen'
       task :cleanup do
-        sh 'kitchen destroy -c'
+        sh 'chef exec kitchen destroy -c'
       end
     end
 
@@ -77,9 +76,6 @@ namespace :cb do
 
   desc 'Cleanup everything'
   task cleanup: ['test:integration:cleanup', 'berks:cleanup']
-end
 
-desc 'Run all style checks'
-task cb: ['cb:berks', 'cb:style', 'cb:test']
-
-task default: ['cb']
+desc 'Run all checks for default'
+task default: ['berks', 'style', 'test']
