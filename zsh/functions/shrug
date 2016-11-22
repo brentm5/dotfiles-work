@@ -1,6 +1,6 @@
-# run a command for all dirs
+# Just shrug it off
 
 function shrug() {
-  echo -n "¯\_(ツ)_/¯" | (pbcopy)
+  echo -n "¯\_(ツ)_/¯" | pbcopy
   echo "¯\_(ツ)_/¯ copied to your clipboard"
 }
