@@ -1,9 +1,12 @@
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
 # Thefuck
 eval "$(thefuck --alias)"
 
 # NVM
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+source "/usr/local/opt/nvm/nvm.sh"
 
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
@@ -78,8 +81,14 @@ if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
 
-# load thoughtbot/dotfiles scripts
+# make sure chefdk gems are above rbenv gems
+export PATH="/opt/chefdk/bin:$PATH"
+
+# load local .bin folder so random binaries are on the path
 export PATH="$HOME/.bin:$PATH"
+
+# Add yarn to the path
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # Configure RCUP
 export RCRC="$HOME/dotfiles/rcrc"
@@ -95,8 +104,3 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-# added by travis gem
-[ -f /Users/bmontague/.travis/travis.sh ] && source /Users/bmontague/.travis/travis.sh
-
-export PATH="$HOME/.yarn/bin:$PATH"

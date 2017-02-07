@@ -19,5 +19,5 @@ setopt promptsubst
 # prompt
 export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}] '
 
-# load thoughtbot/dotfiles scripts
+# load .bin directory for fun
 export PATH="$HOME/.bin:$PATH"
