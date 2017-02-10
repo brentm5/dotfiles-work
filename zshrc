@@ -1,9 +1,6 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-# Thefuck
-eval "$(thefuck --alias)"
-
 # NVM
 export NVM_DIR=~/.nvm
 source "/usr/local/opt/nvm/nvm.sh"
