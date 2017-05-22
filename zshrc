@@ -1,9 +1,8 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+source /usr/local/share/antigen/antigen.zsh
 
-# NVM
-export NVM_DIR=~/.nvm
-source "/usr/local/opt/nvm/nvm.sh"
+# Loads asdf to handle versions
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
@@ -73,19 +72,11 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export TERM="xterm-256color"
 
-# load rbenv if available
-if which rbenv &>/dev/null ; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-
-# make sure chefdk gems are above rbenv gems
+# make sure chefdk gems are above asdf gems
 export PATH="/opt/chefdk/bin:$PATH"
 
 # load local .bin folder so random binaries are on the path
 export PATH="$HOME/.bin:$PATH"
-
-# Add yarn to the path
-export PATH="$HOME/.yarn/bin:$PATH"
 
 # Configure RCUP
 export RCRC="$HOME/dotfiles/rcrc"
