@@ -13,18 +13,16 @@ Install
 
 Clone onto your laptop:
 
-    git clone git://github.com/thoughtbot/dotfiles.git
-
-(Or, [fork and keep your fork
-updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
+    git clone https://github.com/brentm5/dotfiles-work.git ~/.dotfiles
 
 Install [rcm](https://github.com/thoughtbot/rcm):
 
-    brew bundle dotfiles/Brewfile
+    brew tap thoughtbot/formulae
+    brew install rcm
 
 Install:
 
-    rcup -d dotfiles -x README.md -x LICENSE -x Brewfile
+    rcup -d ~/.dotfiles -x README.md -x LICENSE
 
 This will create symlinks for config files in your home directory. The `-x`
 options, which exclude the `README.md`, `LICENSE`, and `Brewfile` files, are

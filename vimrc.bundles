@@ -30,7 +30,6 @@ Bundle 'vim-scripts/ctags.vim'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'vim-scripts/tComment'
 Bundle 'PProvost/vim-ps1'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'elzr/vim-json'
 Bundle 'christoomey/vim-system-copy'
 
