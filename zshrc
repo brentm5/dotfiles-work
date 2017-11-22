@@ -20,8 +20,7 @@ _load_settings() {
           :
           ;;
         *)
-          if [[ -f $config && ${config:e} != "zwc" ]]; then
-            . $config
+          if [[ -f $config && ${config:e} != "zwc" ]]; then . $config
           fi
           ;;
       esac
