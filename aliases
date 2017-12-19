@@ -1,15 +1,7 @@
 # Unix
-alias tlf="tail -f"
-alias ln='ln -v'
-alias mkdir='mkdir -p'
-alias ...='../..'
-alias l='ls'
-alias ll='ls -al'
-alias lh='ls -Alh'
-alias -g G='| grep'
-alias -g M='| less'
-alias -g L='| wc -l'
-alias -g ONE="| awk '{ print \$1}'"
+alias ll="ls -al"
+alias ln="ln -v"
+alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 alias dotfiles="cd ~/.dotfiles"
@@ -26,13 +18,8 @@ alias gcm="git commit -m"
 alias b="bundle"
 alias be="bundle exec"
 
-# Tests and Specs
-alias t="ruby -I test"
-
 # Rails
-alias migrate="rake db:migrate db:rollback && rake db:migrate"
-alias m="migrate"
-alias rk="rake"
+alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias s="rspec"
 
 # Docker
@@ -59,6 +46,9 @@ alias crake="rake -f ~/.rake-files/chef"
 
 # Spotify
 alias song="tmux-spotify-info"
+
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
