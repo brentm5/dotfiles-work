@@ -7,4 +7,7 @@ PATH=".git/safe/../../bin:$PATH"
 # Make sure chefdk is before asdf
 PATH="/opt/chefdk/bin:$PATH"
 
+# Make sure inspec is before chefdk
+PATH="/opt/inspec/bin:$PATH"
+
 export -U PATH
