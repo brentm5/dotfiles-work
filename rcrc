@@ -1,2 +1,3 @@
-EXCLUDES="README*.md LICENSE"
-DOTFILES_DIRS="$HOME/dotfiles-local $HOME/dotfiles"
+EXCLUDES="*:README*.md *:LICENSE"
+DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles"
+SYMLINK_DIRS="bin zsh rake-files"
