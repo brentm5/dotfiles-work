@@ -1,4 +1,0 @@
-
-dot-up() {
-  rcup -v
-}
