@@ -13,6 +13,8 @@ current_path_info() {
 # expand functions in the prompt
 setopt promptsubst
 
+autoload -U promptinit && promptinit
+
 # Torn on which one i like better
 # [master][~/.dotfiles]
 export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}] '
