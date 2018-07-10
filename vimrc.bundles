@@ -37,6 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'christoomey/vim-system-copy'
+Plug 'editorconfig/editorconfig-vim'
 
 if g:has_async
   Plug 'w0rp/ale'
