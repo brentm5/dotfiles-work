@@ -30,6 +30,9 @@ alias dc="docker-compose" # This overrides an actual unix command but its stupid
 # Hogan
 alias hoganize="hogan --configDir ~/code/hogan-configs/configs --rootDir ."
 
+# Gatling
+alias gatling="~/gatling/bin/gatling.sh"
+
 # Chef
 alias critic="foodcritic --epic-fail correctness ."
 alias k="kitchen"

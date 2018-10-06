@@ -13,3 +13,9 @@ tmp/**/*
 *.orig
 *.pyc
 .idea/
+*.iml
+.classpath
+.settings
+.vscode/
+.project
+

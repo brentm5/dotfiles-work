@@ -1,0 +1,5 @@
+# Run continuously
+
+continuously() {
+  while true; do clear; $@; echo "$(date)"; sleep 5; done
+}
