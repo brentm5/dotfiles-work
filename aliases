@@ -28,7 +28,7 @@ alias ds="docker-swarm"
 alias dc="docker-compose" # This overrides an actual unix command but its stupid
 
 # Hogan
-alias hoganize="hogan --configDir ~/code/hogan-configs/configs --rootDir ."
+alias hoganize="hogan transform --configs ~/code/hogan-configs"
 
 # Gatling
 alias gatling="~/gatling/bin/gatling.sh"
