@@ -50,6 +50,11 @@ alias crake="rake -f ~/.rake-files/chef"
 # Spotify
 alias song="tmux-spotify-info"
 
+# Blink1
+alias blink-error="blink1-tool --red --glimmer=5 > /dev/null"
+alias blink-success="blink1-tool --green --glimmer=5 > /dev/null"
+alias blink-off="blink1-tool --off > /dev/null"
+
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
