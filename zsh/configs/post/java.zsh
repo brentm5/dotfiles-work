@@ -1,3 +1,3 @@
-# Manage java with jenv!
+# Manage java with asdf!
 
-eval "$(jenv init -)"
+. ~/.asdf/plugins/java/set-java-home.sh
