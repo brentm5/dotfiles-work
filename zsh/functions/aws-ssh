@@ -7,7 +7,9 @@ aws-ssh() {
     return 1
   fi
 
-  IP_ADDRESS="$(knife node show $INSTANCE_ID -F json -a ipaddress | jq -r '.[].ipaddress')"
+  SEARCH_STRING="ec2_instance_id:$INSTANCE_ID"
+
+  IP_ADDRESS="$(knife search $SEARCH_STRING -F json -a ipaddress | jq -r '.rows[0][].ipaddress')"
 
   if [[ -z $IP_ADDRESS ]]; then
     echo "IP Address not found for $INSTANCE_ID"
