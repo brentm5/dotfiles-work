@@ -1,5 +1,6 @@
 [init]
   templatedir = ~/.git-template
+	defaultBranch = master
 [push]
   default = current
 [color]
@@ -38,3 +39,5 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[pull]
+	ff = only

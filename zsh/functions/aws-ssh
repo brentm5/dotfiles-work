@@ -1,15 +1,26 @@
 # will attempt to login to the IP address of the aws instance id
 
 aws-ssh() {
-  INSTANCE_ID=$1
+  INSTANCE_ID="$1"
   if [[ -z $INSTANCE_ID ]]; then
     echo 'Need to pass in an instance id USAGE: `aws-ssh <instance-id>`'
     return 1
   fi
 
   SEARCH_STRING="ec2_instance_id:$INSTANCE_ID"
+  RESULTS_RESPONSE=$(knife search $SEARCH_STRING -F json -a ipaddress)
+  RESULTS=$(echo "$RESULTS_RESPONSE" | jq -r '.results')
 
-  IP_ADDRESS="$(knife search $SEARCH_STRING -F json -a ipaddress | jq -r '.rows[0][].ipaddress')"
+  if [ "$RESULTS" -lt "1" ]; then
+    echo "No Results Found for $INSTANCE_ID"
+    return 1
+  fi
+
+  if [ "$RESULTS" -gt "1" ]; then
+    echo "More than one result found for $INSTANCE_ID"
+  fi
+
+  IP_ADDRESS="$(echo "$RESULTS_RESPONSE" | jq -r '.rows[0][].ipaddress')"
 
   if [[ -z $IP_ADDRESS ]]; then
     echo "IP Address not found for $INSTANCE_ID"
