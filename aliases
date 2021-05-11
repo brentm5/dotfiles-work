@@ -6,6 +6,7 @@ alias e="$EDITOR"
 alias v="$VISUAL"
 alias dotfiles="cd ~/.dotfiles"
 alias 🔥="kill -s KILL"
+alias ls="lsd"
 
 # Shitty mac fixes
 alias fix_dock="killall -Kill Dock"
