@@ -23,11 +23,6 @@ alias be="bundle exec"
 alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias s="rspec"
 
-# Docker
-alias dm="docker-machine"
-alias ds="docker-swarm"
-alias dc="docker-compose" # This overrides an actual unix command but its stupid
-
 # Hogan
 alias hoganize="hogan transform --configs ~/code/hogan-configs"
 
@@ -35,11 +30,9 @@ alias hoganize="hogan transform --configs ~/code/hogan-configs"
 alias gatling="~/gatling/bin/gatling.sh"
 
 # Chef
-alias critic="foodcritic --epic-fail correctness ."
 alias k="kitchen"
 alias kc="kitchen converge"
 alias kv="kitchen verify"
-alias dv="delivery"
 alias ce="chef exec"
 
 # stash
