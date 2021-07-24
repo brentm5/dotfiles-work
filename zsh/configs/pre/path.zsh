@@ -10,7 +10,7 @@ PATH="/opt/chefdk/bin:$PATH"
 # Make sure inspec is before chefdk
 PATH="/opt/inspec/bin:$PATH"
 
-# Make sure inspec is before chefdk
-PATH="$HOME/.toolbox-bash:$PATH"
+# Load intellij scripts
+PATH="$HOME/.toolbox:$PATH"
 
 export -U PATH
