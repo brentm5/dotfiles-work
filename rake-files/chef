@@ -33,15 +33,10 @@ require 'rspec/core/rake_task'
     task :ruby do
       sh 'chef exec cookstyle .'
     end
-
-    desc 'Run Chef style checks'
-    task :chef do
-      sh 'chef exec foodcritic . --epic-fail any'
-    end
   end
 
   desc 'Run all style checks'
-  task style: ['style:chef', 'style:ruby']
+  task style: ['style:ruby']
 
   namespace :test do
     desc 'Run ChefSpec examples'
