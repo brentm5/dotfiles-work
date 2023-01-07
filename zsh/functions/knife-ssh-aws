@@ -1,0 +1,17 @@
+# will attempt to run a knife ssh commmand for EC2 hosts
+
+knife-aws-ssh() {
+  SEARCH_QUERY="$1"
+  if [[ -z $SEARCH_QUERY ]]; then
+    echo 'Need to pass in an instance id USAGE: `knife-aws-ssh <search-query> <command>`'
+    return 1
+  fi
+  COMMAND="${@:2}"
+  if [[ -z $COMMAND ]]; then
+    echo 'Need to pass in a command USAGE: `knife-aws-ssh <search-query> <command>`'
+    return 1
+  fi
+
+
+  knife ssh "$SEARCH_QUERY" "$COMMAND" -P -a ec2.local_ipv4
+}
