@@ -41,15 +41,26 @@ git-delete-merged-branches() {
   fi
 
   TOTAL_LIST=$(echo "$LOCAL_LIST\n$REMOTE_LIST")
-  if [ -z $TOTAL_LIST]; then
+  if [ -z $TOTAL_LIST ]; then
     echo "No branches to delete, best of luck"
     return 0
   fi 
-  set -e
-  echo "\nDeleting the following branches"
+
+  echo "\nFound the following branches"
   echo $TOTAL_LIST | xargs -L 1 echo "x "
+
+  while true; do
+    echo "Do you wish to delete the branches? (y/n)"
+    read yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) return;;
+        * ) echo "Please answer yes or no.";;
+    esac
+  done
+
+  echo "\nDeleting the following branches"
   echo $TOTAL_LIST | xargs -L 1 git delete-branch
-  set +e
 
   return 0
 }
