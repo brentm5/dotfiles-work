@@ -12,6 +12,21 @@ git-delete-merged-branches() {
   DEFAULT_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
   echo "Default Branch: $DEFAULT_BRANCH"
 
+  REMOTE="$1"
+  RUN_REMOTE=false
+  if [ ! -z $REMOTE ]; then
+    if [ "$REMOTE" == "true" ]; then
+    echo "Remote Branches: Enabled"
+    RUN_REMOTE=true
+    else
+      echo "Remote Branches: Disabled"
+    fi
+  else
+    echo "Remote Branches: Disabled"
+  fi
+
+  echo "--------------------------"
+
   if [ "$CURRENT_BRANCH" != "$DEFAULT_BRANCH" ]; then
     echo "You are currently on '$CURRENT_BRANCH' and you need to be on the '$DEFAULT_BRANCH' for this script to work. \nSwitch to '$DEFAULT_BRANCH' with:  git checkout $DEFAULT_BRANCH"
     return 1
@@ -20,8 +35,10 @@ git-delete-merged-branches() {
   echo 'Gathering local branches'
   LOCAL_LIST=$(git branch --merged $DEFAULT_BRANCH | grep -v "$DEFAULT_BRANCH" | sed 's/* //' | sed 's/ //' | awk '{$1=$1;print}')
 
-  echo 'Gathering remote branches'
-  REMOTE_LIST=$(git branch -r --merged $DEFAULT_BRANCH | grep -v "$DEFAULT_BRANCH" | sed 's/origin\///' | awk '{$1=$1;print}')
+  if [ "$RUN_REMOTE" == "true" ]; then
+    echo 'Gathering remote branches'
+    REMOTE_LIST=$(git branch -r --merged $DEFAULT_BRANCH | grep -v "$DEFAULT_BRANCH" | sed 's/origin\///' | awk '{$1=$1;print}')
+  fi
 
   TOTAL_LIST=$(echo "$LOCAL_LIST\n$REMOTE_LIST")
   if [ -z $TOTAL_LIST]; then
