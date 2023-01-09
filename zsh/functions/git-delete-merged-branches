@@ -1,4 +1,4 @@
-# run a command for all dirs
+# Delete all the merged branches from both local and remote
 
 
 git-delete-merged-branches() {
