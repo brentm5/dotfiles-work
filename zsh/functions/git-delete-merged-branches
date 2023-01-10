@@ -47,7 +47,18 @@ git-delete-merged-branches() {
   fi 
 
   echo "\nFound the following branches"
-  echo $TOTAL_LIST | xargs -L 1 echo "x "
+  while IFS= read -r branch; do
+    if [ ! -z $branch ]; then
+      TIMEFRAME=""
+      if git branch -r | grep -q origin/$branch; then
+        TIMEFRAME="[$(git log -n 1 origin/$branch --format=format:%ar)]"
+        else
+        TIMEFRAME="[$(git log -n 1 $branch --format=format:%ar)]"
+      fi
+      echo "x $branch $TIMEFRAME"
+    fi
+  done <<< "$TOTAL_LIST"
+
 
   while true; do
     echo "Do you wish to delete the branches? (y/n)"
@@ -60,7 +71,11 @@ git-delete-merged-branches() {
   done
 
   echo "\nDeleting the following branches"
-  echo $TOTAL_LIST | xargs -L 1 git delete-branch
+  while IFS= read -r branch; do
+    if [ ! -z $branch ]; then
+      git delete-branch $branch
+    fi
+  done <<< "$TOTAL_LIST"
 
   return 0
 }
