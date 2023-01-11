@@ -1,0 +1,43 @@
+# Delete all the git hooks in a repo
+
+git-delete-hooks() {
+  if [ ! -d .git ]; then
+    echo 'Git directory not found, you need to be at the root of your repo'
+    return 1
+  fi
+
+  GIT_HOOKS_DIR=".git/hooks"
+
+  if [ ! -d "$GIT_HOOKS_DIR" ]; then
+    echo 'Git hooks directory not found, nothing to do'
+    return 0
+  fi
+
+	if [ ! "$(ls -A $GIT_HOOKS_DIR)" ]; then
+    echo "Git hooks Directory is empty, nothing to do"
+    return 0
+  fi
+
+
+  echo 'Current Hooks:'
+
+  ls $GIT_HOOKS_DIR/ | xargs -L 1 echo " - "
+
+  echo ''
+
+  while true; do
+    echo "Do you wish to delete the hooks? (y/n)"
+    read yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) return;;
+        * ) echo "Please answer yes or no.";;
+    esac
+  done
+
+  echo "Deleting the hooks"
+
+  rm -rf $GIT_HOOKS_DIR/*
+
+  return 0
+}

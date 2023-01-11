@@ -1,11 +1,10 @@
 # Delete all the merged branches from both local and remote
 
-
 git-delete-merged-branches() {
   if [ ! -d .git ]; then
     echo 'Git directory not found, you need to be at the root of your repo'
     return 1
-  fi 
+  fi
 
   CURRENT_BRANCH="$(git branch --show-current)"
 
