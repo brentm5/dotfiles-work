@@ -1,6 +1,5 @@
 [init]
-  templatedir = ~/.git-template
-	defaultBranch = master
+	defaultBranch = main
 [push]
   default = current
 [color]
