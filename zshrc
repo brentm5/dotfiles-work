@@ -47,3 +47,5 @@ _load_settings "$HOME/.zsh/configs"
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export REQUESTS_CA_BUNDLE=/Library/Application\ Support/Netskope/STAgent/download/nscacert_combined.pem

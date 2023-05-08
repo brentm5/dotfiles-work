@@ -10,6 +10,9 @@ PATH="/opt/chefdk/bin:$PATH"
 # Make sure inspec is before chefdk
 PATH="/opt/inspec/bin:$PATH"
 
+# Add rancher Desktop
+PATH="$PATH:$HOME/.rd/bin"
+
 # Load intellij scripts
 PATH="$HOME/.toolbox:$PATH"
 
