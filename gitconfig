@@ -1,5 +1,5 @@
 [init]
-	defaultBranch = main
+ defaultBranch = main
 [push]
   default = current
 [color]
@@ -36,7 +36,13 @@
   required = true
 [rebase]
   autosquash = true
-[include]
-  path = ~/.gitconfig.local
 [pull]
-	ff = only
+ ff = only
+
+
+[include]
+  path = ~/.gitconfig-work.local
+
+
+[includeIf "hasconfig:remote.*.url:git@github.com:brentm5*/**"]
+  path = ~/.gitconfig-brentm5.local

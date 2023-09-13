@@ -1,0 +1,42 @@
+# A way to test asdf plugins locally similar to asdf plugin test <git>
+
+function asdf-local-test() {
+    plugin_name="$1"
+    if [[ -z $plugin_name ]]; then
+        plugin_name="$(basename $PWD)"
+        echo "Assuming the plugin name is $plugin_name, if not pass in the correct name"
+    fi
+
+    if [[ -d $PWD/bin ]] && [[ -d $PWD/version.txt ]]; then
+        echo "This can only be called from the root of the plugin"
+        return 1
+    fi
+
+    echo "Setting up a fake testing folder in temp"
+
+    plugins_root="$(mktemp -d)"
+    plugin_path="${plugins_root}"
+    download_path="${plugins_root}/download/${plugin_name}"
+    install_path="${plugins_root}/${plugin_name}/bin"
+
+    mkdir -p "$plugin_path" "$download_path" "$install_path"
+
+    version="$(./bin/latest-stable)"
+    versions="$(./bin/list-all)"
+
+    echo "Found latest version ${version}"
+    echo "Full list of versions include: ${versions}"
+
+    export ASDF_INSTALL_TYPE='version'
+    export ASDF_INSTALL_VERSION="$version"
+    export ASDF_INSTALL_PATH="$install_path"
+    export ASDF_DOWNLOAD_PATH="$download_path"
+
+    ./bin/download
+    ./bin/install
+
+    echo "$plugins_root"
+    tree "$plugins_root"
+
+    return 0
+}

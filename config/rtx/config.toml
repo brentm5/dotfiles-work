@@ -4,4 +4,6 @@
 [plugins]
 phrase = 'https://github.com/phrase/asdf-phrase'
 
+[tools]
+
 
