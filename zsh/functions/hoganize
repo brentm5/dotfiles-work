@@ -1,0 +1,35 @@
+# will run hogan on a template and output its corresponding config
+
+hoganize() {
+  declare TEMPLATE="$1"
+  declare ENV="$2"
+  declare OUTPUT_FILE=$(echo $TEMPLATE | sed s/template/$ENV/)
+
+  if [[ -z $TEMPLATE ]]; then
+    echo 'Need to pass in a template file to use USAGE: hoganize <TEMPLATE> <ENV>'
+    return 1
+  fi
+
+  if [[ -z $ENV ]]; then
+    echo 'Need to pass in an environment to use USAGE: hoganize <TEMPLATE> <ENV>'
+    return 1
+  fi
+
+  if [[ ! -f $TEMPLATE ]]; then
+    echo 'The template does not exist'
+    return 1
+  fi
+
+  http_code=$(curl -s -o "${OUTPUT_FILE}" -w "%{http_code}" -X POST \
+    "${HOGAN_SERVICE_URL}/transform/${HOGAN_GIT_SHA}/${ENV}" \
+    -H 'Accept: */*' \
+    -H 'Cache-Control: no-cache' \
+    -H 'Connection: keep-alive' \
+    -H 'Content-Type: text/plain' \
+    --data-binary "@${TEMPLATE}")
+
+  if [ "$http_code" != "200" ]; then
+    echo "Hogan service had an issue and returned $http_code status"
+    return 1
+  fi
+}

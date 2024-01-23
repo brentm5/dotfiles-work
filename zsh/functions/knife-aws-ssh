@@ -12,5 +12,5 @@ knife-aws-ssh() {
     return 1
   fi
 
-  knife ssh "$SEARCH_QUERY" "$COMMAND" -P -a ec2.local_ipv4
+  knife ssh "$SEARCH_QUERY" "$COMMAND" -C 10 -P -a ec2.local_ipv4
 }

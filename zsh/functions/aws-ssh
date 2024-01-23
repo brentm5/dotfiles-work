@@ -1,6 +1,7 @@
 # will attempt to login to the IP address of the aws instance id
 
 aws-ssh() {
+  local KNIFE_PATH='/opt/chef-workstation/bin/knife'
   INSTANCE_ID="$1"
   if [[ -z $INSTANCE_ID ]]; then
     echo 'Need to pass in an instance id USAGE: `aws-ssh <instance-id>`'
@@ -8,7 +9,7 @@ aws-ssh() {
   fi
 
   SEARCH_STRING="ec2_instance_id:$INSTANCE_ID"
-  RESULTS_RESPONSE=$(knife search $SEARCH_STRING -F json -a ipaddress)
+  RESULTS_RESPONSE=$($KNIFE_PATH search $SEARCH_STRING -F json -a ipaddress)
   RESULTS=$(echo "$RESULTS_RESPONSE" | jq -r '.results')
 
   if [ "$RESULTS" -lt "1" ]; then

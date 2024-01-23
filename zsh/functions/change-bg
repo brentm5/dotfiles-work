@@ -1,0 +1,17 @@
+# With valid folder should change the chef repo symlink
+# Without valid folder error and return
+
+change-bg() {
+  DYNAMIC_BACKGROUNDS="${HOME}/dynamic-backgrounds"
+  ZOOM_DYNAMIC_BACKGROUNDS="${HOME}/Library/Application Support/zoom.us/data/VirtualBkgnd_Custom"
+  ZOOM_DYNAMIC_IMAGE="07E1B282-7161-4229-B108-0C78AC9C52A6"
+
+  IMAGE="$1"
+  if [[ -f $IMAGE ]]; then
+    echo "Changing zoom background to be '${IMAGE}'"
+    ln -sf "${DYNAMIC_BACKGROUNDS}/$IMAGE" "${ZOOM_DYNAMIC_BACKGROUNDS}/${ZOOM_DYNAMIC_IMAGE}"
+  else
+    echo "Zoom Background does not exist '${IMAGE}'"
+  fi
+
+}

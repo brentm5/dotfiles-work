@@ -1,0 +1,11 @@
+#compdef change-bg
+#compdef change-bg=\ls ~/dynamic-backgrounds
+
+_arguments '1:filename:->files'
+case "$state" in
+    files)
+        local -a background_files
+        background_files=($HOME/dynamic-backgrounds/* )
+        _multi_parts / background_files
+        ;;
+esac
