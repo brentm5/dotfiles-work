@@ -31,18 +31,18 @@
 [mergetool "kdiff3"]
   path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
+  process = git-lfs filter-process
 [rebase]
   autosquash = true
 [pull]
  ff = only
 
-
+# Includes for different git auth configs
 [include]
   path = ~/.gitconfig-work.local
 
-
-[includeIf "hasconfig:remote.*.url:git@github.com:brentm5*/**"]
+[includeIf "gitdir:~/code/brentm5"]
   path = ~/.gitconfig-brentm5.local
