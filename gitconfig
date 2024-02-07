@@ -42,7 +42,7 @@
 
 # Includes for different git auth configs
 [includeIf "gitdir:~/code"]
-  path = ~/.gitconfig-brentm5.local
+  path = ~/.gitconfig-work.local
 
 [includeIf "gitdir:~/code-brentm5"]
   path = ~/.gitconfig-brentm5.local
