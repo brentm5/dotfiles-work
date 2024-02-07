@@ -41,11 +41,11 @@
  ff = only
 
 # Includes for different git auth configs
-[includeIf "gitdir:~/code"]
+[includeIf "gitdir:~/code/"]
   path = ~/.gitconfig-work.local
 
-[includeIf "gitdir:~/code-brentm5"]
+[includeIf "gitdir:~/code-brentm5/"]
   path = ~/.gitconfig-brentm5.local
 
-[includeIf "gitdir:~/.dotfiles"]
+[includeIf "gitdir:~/.dotfiles/"]
   path = ~/.gitconfig-brentm5.local
