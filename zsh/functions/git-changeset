@@ -1,0 +1,44 @@
+# Create a simple changeset for prs from last git commit
+
+git-changeset() {
+  if [ ! -d .git ]; then
+    echo 'Git directory not found, you need to be at the root of your repo'
+    return 1
+  fi
+
+  if [ ! -f package.json ]; then
+    echo 'Package json not at the root of your directory'
+    return 1
+  fi
+
+  LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
+  PACKAGE_NAME="$(jq '.name' -r package.json)"
+  CHANGESET_FILE=".changeset/patch-${PACKAGE_NAME}-$(date +%s).md"
+
+  echo "Package Name: $PACKAGE_NAME"
+  echo "Changeset Message: $LAST_COMMIT_MESSAGE"
+
+
+  echo "Greating Changeset file: $CHANGESET_FILE"
+  cat > $CHANGESET_FILE <<EOF
+    ---
+    "${PACKAGE_NAME}": patch
+    ---
+
+    ${LAST_COMMIT_MESSAGE}
+EOF
+
+  while true; do
+    echo "Do you wish to git commit? (y/n)"
+    read yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) return;;
+        * ) echo "Please answer yes or no.";;
+    esac
+  done
+
+  git add $CHANGESET_FILE
+
+  git commit -m 'Add Changeset file'
+}
