@@ -1,6 +1,11 @@
 # Create a simple changeset for prs from last git commit
 
-git-changeset() {
+changeset-git() {
+  MESSAGE=$1
+  if [ -z $MESSAGE ]; then
+    echo 'Message not set, you need to include a message'
+    return 1
+  fi
   if [ ! -d .git ]; then
     echo 'Git directory not found, you need to be at the root of your repo'
     return 1
@@ -11,13 +16,11 @@ git-changeset() {
     return 1
   fi
 
-  LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
   PACKAGE_NAME="$(jq '.name' -r package.json)"
-  PACKAGE_NAME_DIR_SAFE="$(echo $PACKAGE_NAME | sed 's/\//-/g')"
-  CHANGESET_FILE=".changeset/generated-${PACKAGE_NAME_DIR_SAFE}-$(date +%s).md"
+  CHANGESET_FILE=".changeset/generated-${PACKAGE_NAME}-$(date +%s).md"
 
   echo "Package Name: $PACKAGE_NAME"
-  echo "Changeset Message: $LAST_COMMIT_MESSAGE"
+  echo "Changeset Message: $MESSAGE"
 
 
   echo "Greating Changeset file: $CHANGESET_FILE"
@@ -26,7 +29,7 @@ git-changeset() {
     "${PACKAGE_NAME}": patch
     ---
 
-    ${LAST_COMMIT_MESSAGE}
+    ${MESSAGE}
 EOF
 
   while true; do
@@ -41,5 +44,5 @@ EOF
 
   git add $CHANGESET_FILE
 
-  git commit -m 'Add Changeset file'
+  git commit -m "${MESSAGE}"
 }

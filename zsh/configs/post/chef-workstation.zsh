@@ -1,1 +1,1 @@
-export PATH="/opt/chef-workstation/bin:$PATH"
+#export PATH="/opt/chef-workstation/bin:$PATH"
