@@ -5,8 +5,6 @@ trusted_config_paths = [
   '~/code',
 ]
 
-
-
 [plugins]
 phrase = 'https://github.com/phrase/asdf-phrase'
 datadog-static-analyzer = 'https://github.com/brentm5/asdf-datadog-static-analyzer.git'

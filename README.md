@@ -1,7 +1,7 @@
-thoughtbot dotfiles
+ Work dotfiles
 ===================
 
-![prompt](http://images.thoughtbot.com/thoughtbot-dotfiles-prompt.png)
+Starting place provided by [thoughtbot/dotfiles](https://github.com/thoughtbot/dotfiles)
 
 Requirements
 ------------
@@ -16,9 +16,6 @@ Install
 Clone onto your laptop:
 
     git clone https://github.com/brentm5/dotfiles-work.git ~/.dotfiles
-
-(Or, [fork and keep your fork
-updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
 
 Install [rcm](https://github.com/thoughtbot/rcm):
 
@@ -70,35 +67,11 @@ Put your customizations in `~/dotfiles-local` appended with `.local`:
 * `~/dotfiles-local/aliases.local`
 * `~/dotfiles-local/git_template.local/*`
 * `~/dotfiles-local/gitconfig.local`
-* `~/dotfiles-local/psqlrc.local` (we supply a blank `.psqlrc.local` to prevent `psql` from
-  throwing an error, but you should overwrite the file with your own copy)
 * `~/dotfiles-local/tmux.conf.local`
 * `~/dotfiles-local/vimrc.local`
 * `~/dotfiles-local/vimrc.bundles.local`
 * `~/dotfiles-local/zshrc.local`
 * `~/dotfiles-local/zsh/configs/*`
-
-For example, your `~/dotfiles-local/aliases.local` might look like this:
-
-    # Productivity
-    alias todo='$EDITOR ~/.todo'
-
-Your `~/dotfiles-local/gitconfig.local` might look like this:
-
-    [alias]
-      l = log --pretty=colored
-    [pretty]
-      colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
-    [user]
-      name = Dan Croak
-      email = dan@thoughtbot.com
-
-Your `~/dotfiles-local/vimrc.local` might look like this:
-
-    " Color scheme
-    colorscheme github
-    highlight NonText guibg=#060606
-    highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 If you don't wish to install a vim plugin from the default set of vim plugins in
 `.vimrc.bundles`, you can ignore the plugin by calling it out with `UnPlug` in
@@ -119,18 +92,6 @@ plugin with different custom options.
     Plug '$HOME/plugins/vim-run-interactive' 
 To extend your `git` hooks, create executable scripts in
 `~/dotfiles-local/git_template.local/hooks/*` files.
-
-Your `~/dotfiles-local/zshrc.local` might look like this:
-
-    # load pyenv if available
-    if which pyenv &>/dev/null ; then
-      eval "$(pyenv init -)"
-    fi
-
-Your `~/dotfiles-local/vimrc.bundles.local` might look like this:
-
-    Plug 'Lokaltog/vim-powerline'
-    Plug 'stephenmckinney/vim-solarized-powerline'
 
 zsh Configurations
 ------------------
@@ -157,9 +118,6 @@ Some changes, like `chpwd`, must happen in `~/dotfiles-local/zsh/configs/post/ch
       ls
     }
 
-This directory is handy for combining dotfiles from multiple teams; one team
-can add the `virtualenv` file, another `keys`, and a third `chpwd`.
-
 The `~/dotfiles-local/zshrc.local` is loaded after `~/dotfiles-local/zsh/configs`.
 
 vim Configurations
@@ -168,13 +126,6 @@ vim Configurations
 Similarly to the zsh configuration directory as described above, vim
 automatically loads all files in the `~/dotfiles-local/vim/plugin` directory. This does not
 have the same `pre` or `post` subdirectory support that our `zshrc` has.
-
-This is an example `~/dotfiles-local/vim/plugin/c.vim`. It is loaded every time vim starts,
-regardless of the file name:
-
-    # Indent C programs according to BSD style(9)
-    set cinoptions=:0,t0,+4,(4
-    autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
 
 What's in it?
 -------------
@@ -196,8 +147,7 @@ What's in it?
   creating non-existing directories before writing the buffer.
 * Use [vim-plug](https://github.com/junegunn/vim-plug) to manage plugins.
 
-[tmux](http://robots.thoughtbot.com/a-tmux-crash-course)
-configuration:
+[tmux](http://robots.thoughtbot.com/a-tmux-crash-course) configuration:
 
 * Improve color resolution.
 * Remove administrative debris (session name, hostname, time) in status bar.
@@ -246,18 +196,3 @@ dotfiles is copyright © 2009-2017 thoughtbot. It is free software, and may be
 redistributed under the terms specified in the [`LICENSE`] file.
 
 [`LICENSE`]: /LICENSE
-
-About thoughtbot
-----------------
-
-![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
-
-dotfiles is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-We love open source software!
-See [our other projects][community].
-We are [available for hire][hire].
-
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com/hire-us?utm_source=github

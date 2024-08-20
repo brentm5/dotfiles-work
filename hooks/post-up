@@ -1,7 +1,5 @@
 #!/bin/sh
 
-touch "$HOME"/.psqlrc.local
-
 if [ -e "$HOME"/.vim/autoload/plug.vim ]; then
   vim -E -s +PlugUpgrade +qa
 else
