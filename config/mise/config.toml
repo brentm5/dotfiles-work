@@ -11,6 +11,7 @@ datadog-static-analyzer = 'https://github.com/brentm5/asdf-datadog-static-analyz
 
 [tools]
 container-structure-test = "1.17.0"
+ruby = "3.3.5"
 
 [env]
 JAVA_8_HOME='/Users/bmontague/.local/share/mise/installs/java/corretto-8.392.08.1'
