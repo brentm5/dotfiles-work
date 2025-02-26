@@ -19,6 +19,9 @@ alias gcm="git commit -m"
 alias b="bundle"
 alias be="bundle exec"
 
+# PNPM
+alias pnpall="pnpm recursive run --if-present"
+
 # Rspec
 alias s="rspec"
 

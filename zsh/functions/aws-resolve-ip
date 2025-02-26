@@ -1,0 +1,33 @@
+# will attempt to resolve the IP address of the aws instance id
+
+aws-resolve-ip() {
+  local KNIFE_PATH='/opt/chef-workstation/bin/knife'
+  INSTANCE_ID="$1"
+  if [[ -z $INSTANCE_ID ]]; then
+    echo 'Need to pass in an instance id USAGE: `aws-ssh <instance-id>`' >&2
+    return 1
+  fi
+
+  SEARCH_STRING="ec2_instance_id:$INSTANCE_ID"
+  RESULTS_RESPONSE=$($KNIFE_PATH search $SEARCH_STRING -F json -a ipaddress)
+  RESULTS=$(echo "$RESULTS_RESPONSE" | jq -r '.results')
+
+  if [ "$RESULTS" -lt "1" ]; then
+    echo "No Results Found for $INSTANCE_ID" >&2
+    return 1
+  fi
+
+  if [ "$RESULTS" -gt "1" ]; then
+    echo "More than one result found for $INSTANCE_ID" 1>&2; >&2
+    return 1
+  fi
+
+  IP_ADDRESS="$(echo "$RESULTS_RESPONSE" | jq -r '.rows[0][].ipaddress')"
+
+  if [[ -z $IP_ADDRESS ]]; then
+    echo "IP Address not found for $INSTANCE_ID" >&2
+    return 1
+  fi
+
+  echo $IP_ADDRESS
+}

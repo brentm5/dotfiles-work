@@ -5,9 +5,9 @@ trusted_config_paths = [
   '~/code',
 ]
 
-[plugins]
-phrase = 'https://github.com/phrase/asdf-phrase'
-datadog-static-analyzer = 'https://github.com/brentm5/asdf-datadog-static-analyzer.git'
+[alias]
+phrase = 'asdf:https://github.com/phrase/asdf-phrase'
+datadog-static-analyzer = 'asdf:https://github.com/brentm5/asdf-datadog-static-analyzer.git'
 
 [tools]
 container-structure-test = "1.17.0"
