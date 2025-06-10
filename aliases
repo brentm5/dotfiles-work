@@ -8,12 +8,19 @@ alias dotfiles="cd ~/.dotfiles"
 alias 🔥="kill -s KILL"
 alias ls="lsd"
 
+
 # Shitty mac fixes
 alias fix_dock="killall -Kill Dock"
 
 # git
 alias gs="git status"
 alias gcm="git commit -m"
+
+# Github
+
+alias ghpr="gh pr create --web"
+alias gho="gh repo view --web"
+alias ghr="gh repo view --web"
 
 # Bundler
 alias b="bundle"

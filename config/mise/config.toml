@@ -6,16 +6,43 @@ trusted_config_paths = [
 ]
 
 [alias]
-phrase = 'asdf:https://github.com/phrase/asdf-phrase'
-datadog-static-analyzer = 'asdf:https://github.com/brentm5/asdf-datadog-static-analyzer.git'
-
-[tools]
-container-structure-test = "1.17.0"
-ruby = "3.3.5"
+scorecard = 'ubi:ossf/scorecard'
+ftree = 'ubi:trinhminhtriet/ftree'
+osv-scanner = 'ubi:google/osv-scanner'
+oktaws = 'ubi:jonathanmorley/oktaws'
 
 [env]
 JAVA_8_HOME='/Users/bmontague/.local/share/mise/installs/java/corretto-8.392.08.1'
 JAVA_11_HOME='/Users/bmontague/.local/share/mise/installs/java/corretto-11.0.18.10.1'
 JAVA_17_HOME='/Users/bmontague/.local/share/mise/installs/java/corretto-17.0.7.7.1'
+
+[tools]
+awscli = "2.27.32"
+cosign = "2.5.0"
+delta = "0.18.2"
+gh = "2.74.0"
+github-cli = "2.73.0"
+hurl = "6.1.1"
+hyperfine = "1.19.0"
+java = "corretto-17.0.7.7.1"
+jq = "1.8.0"
+lsd = "1.1.5"
+maven = "3.5.4"
+node = "21.5.0"
+osv-scanner = "2.0.2"
+packer = "1.13.1"
+pnpm = "8.15.7"
+python = "3.12.6"
+ruby = "3.3.5"
+rust = "1.87.0"
+scorecard = "5.2.0"
+terraform = "1.12.1"
+trivy = "0.63.0"
+ftree = "0.1.2"
+vivid = "0.10.1"
+yarn = "4.9.2"
+yq = "4.45.4"
+oktaws = "0.19.1"
+tokei = "12.1.2"
 
 

@@ -1,11 +1,15 @@
 [init]
  defaultBranch = main
+
 [push]
   default = current
+
 [color]
   ui = auto
+
 [format]
   pretty = %Cred%h%Creset [%Cgreen%ar%Creset] %s %C(bold blue)<%an>%Creset
+
 [alias]
   aa = add --all
   ap = add --patch
@@ -15,30 +19,42 @@
   create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
   delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
   merge-branch = !git checkout master && git merge @{-1}
-  pr = !hub pull-request
+  pr = !gh pr create --fill && gh pr view --web
   pf = push --force-with-lease
   st = status
+
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+  pager = delta
+
 [commit]
   template = ~/.gitmessage
 [fetch]
   prune = true
 [merge]
-  tool = kdiff3
+  conflictstyle = zdiff3
   ff = only
-[mergetool "kdiff3"]
-  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   required = true
   process = git-lfs filter-process
+
 [rebase]
   autosquash = true
+
 [pull]
  ff = only
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
 
 [include]
   path = ~/.gitconfig.local

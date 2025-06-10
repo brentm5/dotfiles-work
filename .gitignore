@@ -1,3 +1,4 @@
 !bin
 vim/bundle/
 config/rtx/trusted-configs
+node_modules/
