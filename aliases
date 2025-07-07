@@ -1,3 +1,8 @@
+# General
+alias md="marked"
+alias l='ls'
+alias c="cd ~/code"
+
 # Unix
 alias ll="ls -al"
 alias ln="ln -v"
@@ -5,15 +10,16 @@ alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 alias dotfiles="cd ~/.dotfiles"
-alias 🔥="kill -s KILL"
+alias killit="echo "🔥" && kill -s KILL"
 alias ls="lsd"
 
-
-# Shitty mac fixes
+# Shitty fixes
 alias fix_dock="killall -Kill Dock"
+alias fix-completions="rm ~/.zcompdump && exec zsh"
 
 # git
-alias gs="git status"
+alias gs="git status --short --branch"
+alias gg="git log --graph"
 alias gcm="git commit -m"
 
 # Github
@@ -40,9 +46,6 @@ alias k="kitchen"
 alias kc="kitchen converge"
 alias kv="kitchen verify"
 alias ce="chef exec"
-
-# stash
-alias spr="stash pull-request"
 
 # Rakefile overrides
 alias crake="rake -f ~/.rake-files/chef"

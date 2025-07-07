@@ -10,4 +10,7 @@ PATH="$PATH:$HOME/.rd/bin"
 # Load intellij scripts
 PATH="$HOME/.toolbox:$PATH"
 
+# XDG Base Directory Spec
+export PATH="$HOME/.local/bin:$PATH"
+
 export -U PATH

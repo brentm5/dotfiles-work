@@ -2,4 +2,16 @@
 
 set -e
 
-gh pr create
+REPO_ROOT=$(git rev-parse --show-toplevel)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+PR_EXISTS=$(gh pr list --head $CURRENT_BRANCH --state open --json number --jq 'has(0)')
+
+echo "Current branch: $CURRENT_BRANCH"
+echo "Checking if PR exists for this branch..."
+
+if [ $PR_EXISTS = 'true' ]; then
+  gh pr view $(gh pr list --head $CURRENT_BRANCH --state open --json number --jq '.[0].number') --web
+  else 
+  gh pr create --fill && gh pr view --web
+fi
+

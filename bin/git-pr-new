@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#set -e
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+#PR_EXISTS=$(gh pr list --head $CURRENT_BRANCH --state open --json number --jq 'has(0)')
+#PR_NUMBER=$(gh pr list --head bm-fix-gh-actions --state open --json number --jq '.[0].number')
+PR_EXISTS='false'
+
+echo "Current branch: $CURRENT_BRANCH"
+echo "Checking if PR exists for this branch..."
+echo "PR exists: $PR_EXISTS"
+
+
+if [ $PR_EXISTS = 'true' ]; then
+  echo "PR already exists for this branch"
+  exit 0
+fi
+
+if [ -d "$REPO_ROOT/.changeset" ]; then
+  echo "Changesets Exist calculating PR title and body from changesets"
+fi
+
+CHANGESET_TEMP_FILE=".git/temp-changeset-summary.json"
+CHANGESET_TEMP_FILE_PATH="$REPO_ROOT/$CHANGESET_TEMP_FILE"
+
+pnpm changeset status --output=$CHANGESET_TEMP_FILE
+CHANGES=$(cat $CHANGESET_TEMP_FILE_PATH | jq -r '.changesets[] | "* \(.summary)"')
+rm $CHANGESET_TEMP_FILE
+
+echo "${CHANGES}"
+
+#gh pr create --fill && gh pr view --web
+

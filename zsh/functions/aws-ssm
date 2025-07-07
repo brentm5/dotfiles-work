@@ -1,0 +1,30 @@
+# will attempt to login to the instance via ssm
+
+aws-ssm() {
+  local KNIFE_PATH='/opt/chef-workstation/bin/knife'
+  INSTANCE_ID="$1"
+  if [[ -z $INSTANCE_ID ]]; then
+    echo 'Need to pass in an instance id USAGE: `aws-ssh <instance-id>`' >&2
+    return 1
+  fi
+
+  SEARCH_STRING="ec2_instance_id:$INSTANCE_ID"
+  RESULTS_RESPONSE=$($KNIFE_PATH search $SEARCH_STRING -F json -a ec2.placement_region)
+  RESULTS=$(echo "$RESULTS_RESPONSE" | jq -r '.results')
+
+  if [ "$RESULTS" -lt "1" ]; then
+    echo "No Results Found for $INSTANCE_ID" >&2
+    return 1
+  fi
+
+  if [ "$RESULTS" -gt "1" ]; then
+    echo "More than one result found for $INSTANCE_ID" 1>&2; >&2
+    return 1
+  fi
+
+  REGION="$(echo "$RESULTS_RESPONSE" | jq -r '.rows[0][]["ec2.placement_region"]')"
+
+  echo "Running: aws --profile $AWS_PROFILE --region $REGION ssm start-session --target $INSTANCE_ID"
+
+  aws --profile $AWS_PROFILE --region $REGION ssm start-session --target $INSTANCE_ID
+}

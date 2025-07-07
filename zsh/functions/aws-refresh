@@ -1,0 +1,15 @@
+# Sets the aws profile by setting the AWS_PROFILE environment variable, and saving the profile name to a static file to keep state.
+# Config for this function is in zsh/configs/pre/030-aws-profile.zsh
+
+aws-refresh() {
+  PROFILE_NAME="$1"
+
+  if [[ -z $PROFILE_NAME ]]; then
+    echo "Profile set to $AWS_PROFILE, refreshing profile" >&2
+    oktaws $AWS_PROFILE
+  else
+    echo "Profile name not set, refreshing everything" >&2
+    oktaws
+  fi
+}
+

@@ -1,0 +1,7 @@
+# With valid folder should change the chef repo symlink
+# Without valid folder error and return
+
+aws-which-profile() {
+  echo "Current AWS Profile: ${AWS_PROFILE:-Not Set}"
+}
+
