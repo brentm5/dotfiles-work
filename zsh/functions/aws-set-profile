@@ -5,7 +5,11 @@ aws-set-profile() {
   PROFILE_NAME="$1"
 
   if [[ -z $PROFILE_NAME ]]; then
-    echo "Need to pass in a profile name USAGE: \`aws-set-profile <profile-name>\`" >&2
+    PROFILE_NAME="$(aws configure list-profiles | fzf --height 15 --prompt 'Select AWS Profile: ')"
+  fi
+
+  if [[ -z $PROFILE_NAME ]]; then
+    echo "Need to set a profile name USAGE: \`aws-set-profile <profile-name>\`" >&2
     return 1
   fi
 

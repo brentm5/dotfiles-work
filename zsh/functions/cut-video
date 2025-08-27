@@ -1,0 +1,21 @@
+# Cuts a video using ffmpeg
+
+cut-video() {
+  INPUT_FILE="$1"
+  OUTPUT_FILE="$2"
+  START_TIME="$3"
+  END_TIME="$4"
+
+  if [[ -z $INPUT_FILE || -z $OUTPUT_FILE || -z $START_TIME || -z $END_TIME ]]; then
+    echo "Usage: cut-video <input-file> <output-file> <start-time> <end-time>" >&2
+    return 1
+  fi
+
+  if [[ ! -f $INPUT_FILE ]]; then
+    echo "Input file does not exist: $INPUT_FILE" >&2
+    return 1
+  fi
+
+  ffmpeg -i "$INPUT_FILE" -ss "$START_TIME" -to "$END_TIME" -c copy "$OUTPUT_FILE"
+}
+

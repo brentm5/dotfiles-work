@@ -22,11 +22,8 @@ alias gs="git status --short --branch"
 alias gg="git log --graph"
 alias gcm="git commit -m"
 
-# Github
-
-alias ghpr="gh pr create --web"
-alias gho="gh repo view --web"
-alias ghr="gh repo view --web"
+# Actionlint
+alias galint="actionlint -config-file ~/.actionlint.yaml"
 
 # Bundler
 alias b="bundle"
@@ -37,6 +34,9 @@ alias pnpall="pnpm recursive run --if-present"
 
 # Rspec
 alias s="rspec"
+
+# Renovate
+alias validate-renovate-config="docker run -it -v ./:/usr/src/app --entrypoint renovate-config-validator ghcr.io/renovatebot/renovate"
 
 # Gatling
 alias gatling="~/gatling/bin/gatling.sh"
@@ -60,6 +60,7 @@ alias blink-off="blink1-tool --off > /dev/null"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
+alias reload-zsh="source ~/.zshrc"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
